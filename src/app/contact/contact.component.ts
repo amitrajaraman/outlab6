@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DATA } from '../contact-data';
 
 @Component({
   selector: 'app-contact',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+
+  Name = DATA.NAME;
+  Rollno = DATA.ROLLNO;
+  Email = DATA.EMAIL;
 
   constructor() { }
 
