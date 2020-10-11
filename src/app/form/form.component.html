@@ -1,1 +1,32 @@
-<p>form works!</p>
+<h3> Form </h3>
+
+<label>Name:
+	<input [(ngModel)]="form_name" type="text" placeholder="Enter Name">
+</label>
+<br>
+<label>Email:
+	<input [(ngModel)]="form_email" type="email" placeholder="Enter Email">
+</label>
+<br>
+
+<input class="form-check-input" 
+	   type="radio" id="Great" name="feedback" value="Great" (change)="onItemChange($event.target.value)">
+<label for="great">Great</label><br>
+
+<input class="form-check-input" 
+	   type="radio" id="Okay" name="feedback" value="Okay" (change)="onItemChange($event.target.value)">
+<label class="form-check-input" for="okay">Okay</label><br>
+
+<input class="form-check-input" 
+       type="radio" id="Not good" name="feedback" value="Not good" (change)="onItemChange($event.target.value)">
+<label for="not_good">Not Good</label>
+
+<br>
+<label>
+	<textarea [(ngModel)]="comments" rows="6" cols="35"></textarea>
+</label>
+<br>
+
+<button (click)="submit()">
+	Submit!
+</button>
