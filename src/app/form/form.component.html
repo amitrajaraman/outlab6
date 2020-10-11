@@ -1,21 +1,22 @@
-<h3> Form </h3>
+<h2> <span>Form</span> </h2>
 
-<label>Name:
+<label><span>Name:</span>
 	<input [(ngModel)]="form_name" type="text" placeholder="Enter Name">
 </label>
 <br>
-<label>Email:
+<label><span>Email: </span>
 	<input [(ngModel)]="form_email" type="email" placeholder="Enter Email">
 </label>
 <br>
 
+<span>Select Feedback:</span> <br>
 <input class="form-check-input" 
 	   type="radio" id="Great" name="feedback" value="Great" (change)="onItemChange($event.target.value)">
-<label for="great">Great</label><br>
+<label for="great">Great</label>
 
 <input class="form-check-input" 
 	   type="radio" id="Okay" name="feedback" value="Okay" (change)="onItemChange($event.target.value)">
-<label class="form-check-input" for="okay">Okay</label><br>
+<label class="form-check-input" for="okay">Okay</label>
 
 <input class="form-check-input" 
        type="radio" id="Not good" name="feedback" value="Not good" (change)="onItemChange($event.target.value)">
@@ -23,6 +24,7 @@
 
 <br>
 <label>
+	<span>Comments:</span> <br>
 	<textarea [(ngModel)]="comments" rows="6" cols="35"></textarea>
 </label>
 <br>
