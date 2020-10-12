@@ -1,14 +1,14 @@
 .mat-toolbar{
-  background: rgb(30,30,30);
+  background: rgb(40,40,40);
 }
 
 .mat-toolbar a{
     text-decoration: none;
-	font: 30px/1.5 ROBOTO ;
+	font: 30px/1.5 ROBOTO;
 	margin: .5em;
     padding: .3em;
     height: 1.6em;
-	color: rgb(200,200,200);
+	color: rgb(240,240,240);
 }
 
 .mat-toolbar a:hover{
@@ -17,5 +17,5 @@
     padding: .3em;
     height: 1.6em;
     border-radius: 6px;
-    background: rgb(60,60,60);
+    background: rgb(70,70,70);
 }

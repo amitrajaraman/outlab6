@@ -5,7 +5,7 @@
     height: 1.6em;
     border-radius: 6px;
     font: 400 40px/1.5 ROBOTO ;
-    color: rgb(200,200,200);
+    color: rgb(210,210,210);
   }
    
   ul {
@@ -18,5 +18,5 @@
     font: 200 20px/1.5 ROBOTO;
     margin-left: 1.7em;
     padding: 0.2em;
-    color: rgb(200,200,200);
+    color: rgb(255,255,255);
   }
