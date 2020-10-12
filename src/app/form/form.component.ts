@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DATA } from '../contact-data';
-
+import { Contact } from '../contact';
 
 @Component({
   selector: 'app-form',
@@ -15,8 +15,8 @@ export class FormComponent implements OnInit {
   }
 
   data=DATA;
-  form_email=this.data.EMAIL;
-  form_name=this.data.NAME;
+  form_email=this.data.email;
+  form_name=this.data.name;
   comments='';
   selected;
   b_sel=false;
@@ -24,8 +24,8 @@ export class FormComponent implements OnInit {
   submit(): void{
     if( this.b_sel==false ) {window.alert('Error: Selecting feedback is compulsory');}
     else{
-    	this.data.EMAIL=this.form_email;
-    	this.data.NAME =this.form_name;
+    	this.data.email=this.form_email;
+    	this.data.name =this.form_name;
     	window.alert('Submitted Successfully! \n Your Comment was: ' + this.comments + '\n Your Feedback was: ' + this.selected);
     }
   }
