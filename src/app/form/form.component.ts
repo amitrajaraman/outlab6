@@ -20,7 +20,11 @@ export class FormComponent implements OnInit {
 
   getdata(): void {
     this.GpService.getData()
-              .subscribe(data => { this.data = data; this.form_email = data.email; this.form_name = data.name });
+      .subscribe(data => {
+        this.data = data;
+        this.form_email = data.email;
+        this.form_name = data.name
+      });
   }
 
   ngOnInit(): void {
@@ -31,8 +35,23 @@ export class FormComponent implements OnInit {
     if( this.b_sel==false ) {window.alert('Error: Selecting feedback is compulsory');}
     else{
     	this.data.email=this.form_email;
-    	this.data.name =this.form_name;
-    	window.alert('Submitted Successfully! \n Your Comment was: ' + this.comments + '\n Your Feedback was: ' + this.selected);
+      this.data.name =this.form_name;
+      this.GpService.postData(this.data)
+        .subscribe(
+          (val) => {
+            console.log("Value submitted is", this.data);
+            console.log("POST call successful value returned in body", 
+                        val);
+          },
+          response => {
+              console.log("POST call in error", response);
+              window.alert('There was an error in submitting the form, try again.');
+          },
+          () => {
+              console.log("The POST observable is now completed.");
+              window.alert('Form submitted successfully!');
+          }
+        );
     }
   }
 
