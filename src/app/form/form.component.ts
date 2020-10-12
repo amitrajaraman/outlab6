@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DATA } from '../contact-data';
 import { Contact } from '../contact';
+import { GetpostService } from '../getpost.service';
 
 @Component({
   selector: 'app-form',
@@ -9,17 +9,23 @@ import { Contact } from '../contact';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  data=DATA;
-  form_email=this.data.email;
-  form_name=this.data.name;
+  data: Contact;
+  form_email: string = '';
+  form_name: string = '';
   comments='';
   selected;
   b_sel=false;
+
+  constructor(private GpService: GetpostService) { }
+
+  getdata(): void {
+    this.GpService.getData()
+              .subscribe(data => { this.data = data; this.form_email = data.email; this.form_name = data.name });
+  }
+
+  ngOnInit(): void {
+    this.getdata();
+  }
 
   submit(): void{
     if( this.b_sel==false ) {window.alert('Error: Selecting feedback is compulsory');}
