@@ -38,3 +38,19 @@
 <button (click)="submit()">
 	Submit!
 </button>
+
+<div *ngIf="data">
+	<h2>
+		<span>Data returned from server:</span>
+	</h2>
+	<span>
+	Name: {{ data.name }} <br>
+	</span>
+	<span>
+	Email: {{ data.email }} <br>
+	</span>
+	<span>
+	Feedback: {{ data.feedback }} <br>
+	</span>
+	<span *ngIf="data.comment"> Comment: {{ data.comment }} </span>
+</div>
