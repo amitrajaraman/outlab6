@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
 import { GetpostService } from '../getpost.service';
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-form',
@@ -10,9 +11,9 @@ import { GetpostService } from '../getpost.service';
 export class FormComponent implements OnInit {
 
   data: Contact;
-  form_email: string = '';
-  form_name: string = '';
-  comments='';
+  new_form_name = new FormControl('');
+  new_form_email = new FormControl('');
+  new_form_comments = new FormControl('');
   selected;
   b_sel=false;
 
@@ -22,8 +23,9 @@ export class FormComponent implements OnInit {
     this.GpService.getData()
       .subscribe(data => {
         this.data = data;
-        this.form_email = data.email;
-        this.form_name = data.name
+        this.new_form_name.setValue(data.name);
+        this.new_form_email.setValue(data.email);
+        this.new_form_comments.setValue(data.comment);
       });
   }
 
@@ -34,8 +36,9 @@ export class FormComponent implements OnInit {
   submit(): void{
     if( this.b_sel==false ) {window.alert('Error: Selecting feedback is compulsory');}
     else{
-    	this.data.email=this.form_email;
-      this.data.name =this.form_name;
+    	this.data.email=this.new_form_email.value;
+      this.data.name =this.new_form_name.value;
+      this.data.comment=this.new_form_comments.value;
       this.GpService.postData(this.data)
         .subscribe(
           (val) => {

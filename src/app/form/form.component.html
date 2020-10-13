@@ -1,11 +1,11 @@
 <h2> <span>Form</span> </h2>
 
 <label><span>Name:</span>
-	<input [(ngModel)]="form_name" type="text" placeholder="Enter Name">
+	<input type="text" [formControl]="new_form_name" placeholder="Enter Name">
 </label>
 <br>
 <label><span>Email: </span>
-	<input [(ngModel)]="form_email" type="email" placeholder="Enter Email">
+	<input type="email" [formControl]="new_form_email" placeholder="Enter Email">
 </label>
 <br>
 
@@ -25,7 +25,7 @@
 <br>
 <label>
 	<span>Comments:</span> <br>
-	<textarea [(ngModel)]="comments" rows="6" cols="35"></textarea>
+	<textarea [formControl]="new_form_comments" rows="6" cols="35"></textarea>
 </label>
 <br>
 
