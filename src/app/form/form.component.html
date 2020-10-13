@@ -4,25 +4,31 @@
 	<input type="text" [formControl]="new_form_name" placeholder="Enter Name">
 </label>
 <br>
-<label><span>Email: </span>
+<label><span>Email : </span>
 	<input type="email" [formControl]="new_form_email" placeholder="Enter Email">
 </label>
 <br>
 
-<span>Select Feedback:</span> <br>
-<input class="form-check-input" 
-	   type="radio" id="Great" name="feedback" value="Great" (change)="onItemChange($event.target.value)">
-<label for="great">Great</label>
+<form [formGroup]="feedback_form">
+	<div class="feedback_form-group">
+		<label for="feed"><span>Select Feedback:</span></label>
+		<div>
+			<input id="Great" type="radio" value="Great" name="feed" formControlName="feed"/>
+			<label for="Great">Great</label>
+		</div>
 
-<input class="form-check-input" 
-	   type="radio" id="Okay" name="feedback" value="Okay" (change)="onItemChange($event.target.value)">
-<label class="form-check-input" for="okay">Okay</label>
+		<div>
+			<input id="Okay" type="radio" value="Okay" name="feed" formControlName="feed">
+			<label for="Okay">Okay</label>
+		</div>
 
-<input class="form-check-input" 
-       type="radio" id="Not good" name="feedback" value="Not good" (change)="onItemChange($event.target.value)">
-<label for="not_good">Not Good</label>
+		<div>
+			<input id="Not good" type="radio" value="Not good" name="feed" formControlName="feed">
+			<label for="Not good">Not good</label>
+		</div>
+	</div>
+</form>
 
-<br>
 <label>
 	<span>Comments:</span> <br>
 	<textarea [formControl]="new_form_comments" rows="6" cols="35"></textarea>

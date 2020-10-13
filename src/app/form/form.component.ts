@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
 import { GetpostService } from '../getpost.service';
-import { FormControl } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
+
 export class FormComponent implements OnInit {
 
   data: Contact;
@@ -16,6 +17,14 @@ export class FormComponent implements OnInit {
   new_form_comments = new FormControl('');
   selected;
   b_sel=false;
+
+  feedback_form = new FormGroup({
+    feed: new FormControl('', Validators.required)
+  });
+
+  get f(){
+    return this.feedback_form.controls;
+  }
 
   constructor(private GpService: GetpostService) { }
 
@@ -26,6 +35,7 @@ export class FormComponent implements OnInit {
         this.new_form_name.setValue(data.name);
         this.new_form_email.setValue(data.email);
         this.new_form_comments.setValue(data.comment);
+        this.feedback_form.patchValue({feed: data.feedback});
       });
   }
 
@@ -34,11 +44,12 @@ export class FormComponent implements OnInit {
   }
 
   submit(): void{
-    if( this.b_sel==false ) {window.alert('Error: Selecting feedback is compulsory');}
+    if( this.f.feed.errors!=null ) {window.alert('Error: Selecting feedback is compulsory');}
     else{
     	this.data.email=this.new_form_email.value;
       this.data.name =this.new_form_name.value;
       this.data.comment=this.new_form_comments.value;
+      this.data.feedback=this.feedback_form.value.feed;
       this.GpService.postData(this.data)
         .subscribe(
           (val) => {
