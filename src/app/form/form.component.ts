@@ -32,8 +32,7 @@ export class FormComponent implements OnInit {
   getdata(): void {
     this.GpService.getData()
       .subscribe(tempVar => {
-        this.origData = tempVar;
-        this.data = this.origData;
+        this.data = tempVar;
         this.new_form_name.setValue(tempVar.name);
         this.new_form_email.setValue(tempVar.email);
         this.new_form_comments.setValue(tempVar.comment);
