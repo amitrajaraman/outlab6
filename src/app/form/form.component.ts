@@ -6,12 +6,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.scss']
 })
 
 export class FormComponent implements OnInit {
 
   data: Contact;
+  origData: Contact;
   new_form_name = new FormControl('');
   new_form_email = new FormControl('');
   new_form_comments = new FormControl('');
@@ -30,12 +31,13 @@ export class FormComponent implements OnInit {
 
   getdata(): void {
     this.GpService.getData()
-      .subscribe(data => {
-        this.data = data;
-        this.new_form_name.setValue(data.name);
-        this.new_form_email.setValue(data.email);
-        this.new_form_comments.setValue(data.comment);
-        this.feedback_form.patchValue({feed: data.feedback});
+      .subscribe(tempVar => {
+        this.origData = tempVar;
+        this.data = this.origData;
+        this.new_form_name.setValue(tempVar.name);
+        this.new_form_email.setValue(tempVar.email);
+        this.new_form_comments.setValue(tempVar.comment);
+        this.feedback_form.patchValue({feed: tempVar.feedback});
       });
   }
 
@@ -46,10 +48,6 @@ export class FormComponent implements OnInit {
   submit(): void{
     if( this.f.feed.errors!=null ) {window.alert('Error: Selecting feedback is compulsory');}
     else{
-    	this.data.email=this.new_form_email.value;
-      this.data.name =this.new_form_name.value;
-      this.data.comment=this.new_form_comments.value;
-      this.data.feedback=this.feedback_form.value.feed;
       this.GpService.postData(this.data)
         .subscribe(
           (val) => {
@@ -64,6 +62,10 @@ export class FormComponent implements OnInit {
           () => {
               console.log("The POST observable is now completed.");
               window.alert('Form submitted successfully!');
+              this.data.email=this.new_form_email.value;
+              this.data.name =this.new_form_name.value;
+              this.data.comment=this.new_form_comments.value;
+              this.data.feedback=this.feedback_form.value.feed;
           }
         );
     }

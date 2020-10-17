@@ -39,18 +39,18 @@
 	Submit!
 </button>
 
-<div *ngIf="data">
+<div *ngIf="origData">
 	<h2>
 		<span>Data returned from server:</span>
 	</h2>
 	<span>
-	Name: {{ data.name }} <br>
+	Name: {{ origData.name }} <br>
 	</span>
 	<span>
-	Email: {{ data.email }} <br>
+	Email: {{ origData.email }} <br>
 	</span>
 	<span>
-	Feedback: {{ data.feedback }} <br>
+	Feedback: {{ origData.feedback }} <br>
 	</span>
-	<span *ngIf="data.comment"> Comment: {{ data.comment }} </span>
+	<span *ngIf="origData.comment"> Comment: {{ origData.comment }} </span>
 </div>
