@@ -12,7 +12,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 export class FormComponent implements OnInit {
 
   data: Contact;
-  origData: Contact;
   new_form_name = new FormControl('');
   new_form_email = new FormControl('');
   new_form_comments = new FormControl('');
